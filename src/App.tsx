@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import WelcomeScreen from "./components/WelcomeScreen";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type Question = {
+  category: string;
+  question: string;
+  correctAnswer: boolean;
+};
+
+const DUMMY_QUESTIONS: Array<Question> = [
+  {
+    category: "General",
+    question: "Do French people like cheese?",
+    correctAnswer: true,
+  },
+  {
+    category: "Science: Math",
+    question: "Do Polish people like functional analysis?",
+    correctAnswer: true,
+  },
+  {
+    category: "Science: Biology",
+    question: "Does milk contain water?",
+    correctAnswer: true,
+  },
+  {
+    category: "Science: Physics",
+    question: "Is symplectic geometry related to classical mechanics?",
+    correctAnswer: true,
+  },
+];
+
+const App = () => {
+  const [quizStarted, setQuizStarted] = useState<boolean>(false);
+  const [questions, setQuestions] = useState<Array<Question>>([]);
+
+  return <>{!quizStarted && <WelcomeScreen />}</>;
+};
 
 export default App;
